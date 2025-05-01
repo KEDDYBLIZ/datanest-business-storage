@@ -282,7 +282,7 @@
     )
     
     ;; Log the registration
-    (create-audit-log-entry business none none "business-registration" (some (concat "Tier: " (to-ascii tier))))
+    ;; (create-audit-log-entry business none none "business-registration" (some (concat "Tier: " (int-to-ascii tier))))
     (ok true)
   )
 )
@@ -306,13 +306,13 @@
       )
       
       ;; Log the upgrade
-      (create-audit-log-entry 
-        business 
-        none 
-        none 
-        "tier-upgrade" 
-        (some (concat "New tier: " (to-ascii new-tier)))
-      )
+      ;; (create-audit-log-entry 
+      ;;   business 
+      ;;   none 
+      ;;   none 
+      ;;   "tier-upgrade" 
+      ;;   (some (concat "New tier: " (int-to-ascii new-tier)))
+      ;; )
       (ok true)
     )
   )
@@ -474,13 +474,13 @@
         )
         
         ;; Log file update
-        (create-audit-log-entry 
-          business 
-          (some file-id) 
-          (default-to (get folder-id file) new-folder-id) 
-          "file-updated" 
-          (some (concat "Updated by: " (to-ascii tx-sender)))
-        )
+        ;; (create-audit-log-entry 
+        ;;   business 
+        ;;   (some file-id) 
+        ;;   (default-to (get folder-id file) new-folder-id) 
+        ;;   "file-updated" 
+        ;;   (some (concat "Updated by: " (int-to-ascii tx-sender)))
+        ;; )
         (ok true)
       )
     )
@@ -512,7 +512,7 @@
         (some file-id) 
         (get folder-id file) 
         "file-deleted" 
-        (some (concat "Deleted by: " (to-ascii tx-sender)))
+        (some (concat "Deleted by: " (int-to-ascii tx-sender)))
       )
       
       ;; Delete file metadata
@@ -557,7 +557,7 @@
       (some file-id) 
       none 
       "access-granted" 
-      (some (concat "To: " (to-ascii user)))
+      (some (concat "To: " (int-to-ascii user)))
     )
     (ok true)
   )
@@ -581,7 +581,7 @@
       (some file-id) 
       none 
       "access-revoked" 
-      (some (concat "From: " (to-ascii user)))
+      (some (concat "From: " (int-to-ascii user)))
     )
     (ok true)
   )
@@ -601,7 +601,7 @@
     (some file-id) 
     none 
     "file-accessed" 
-    (some (concat "By: " (to-ascii tx-sender)))
+    (some (concat "By: " (int-to-ascii tx-sender)))
   )
   (ok true)
 )
@@ -659,7 +659,7 @@
             (some file-id) 
             none 
             "file-transferred-out" 
-            (some (concat "To: " (to-ascii new-owner)))
+            (some (concat "To: " (int-to-ascii new-owner)))
           )
           
           (create-audit-log-entry 
@@ -667,7 +667,7 @@
             (some file-id) 
             none 
             "file-transferred-in" 
-            (some (concat "From: " (to-ascii business)))
+            (some (concat "From: " (int-to-ascii business)))
           )
           
           (ok true)
